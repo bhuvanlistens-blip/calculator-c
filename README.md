@@ -1,18 +1,19 @@
 # calculator-c
 
-A command-line calculator written in C11, built to practice clean C fundamentals, compiler warnings, input validation, and safe `stdin` buffer handling.
+A modular command-line calculator written in C11, built to practice clean C fundamentals, strict compiler warnings, pointer-based output parameters, safe `stdin` buffer handling, and automated builds with `make`.
 
 ## Features
 
 - Arithmetic operations: Addition (`+`), Subtraction (`-`), Multiplication (`*`), Division (`/`), and Modulus (`%` via `fmod`)
+- Modular architecture separating input validation (`read_double`), buffer cleanup (`clear_input_buffer`), and arithmetic logic (`calculate`)
 - Continuous calculation loop (`do-while`) for running multiple calculations in one session
-- Numeric input validation using `scanf` return-value checking
-- `stdin` buffer clearing to recover cleanly from invalid non-numeric input
+- Numeric input validation using `scanf` return-value checking and `stdin` buffer clearing
 - Division-by-zero and modulus-by-zero protection
+- Automated builds and cleanup via `Makefile`
 
 ## Prerequisites
 
-- A C11-compatible compiler (`clang` or `gcc`)
+- A C11-compatible compiler (`clang` or `gcc`) and `make`
 - On macOS, install Apple Command Line Tools if not already installed:
 
 ```bash
@@ -28,16 +29,22 @@ git clone [https://github.com/bhuvanlistens-blip/calculator-c.git](https://githu
 cd calculator-c
 ```
 
-2. Compile with strict warnings enabled and link the math library:
+2. Build the executable using `make`:
 
 ```bash
-clang -Wall -Wextra -std=c11 main.c -o calculator -lm
+make
 ```
 
-3. Run the executable:
+3. Run the calculator:
 
 ```bash
 ./calculator
+```
+
+4. Remove the compiled binary when needed:
+
+```bash
+make clean
 ```
 
 ## Example Usage
@@ -46,10 +53,10 @@ clang -Wall -Wextra -std=c11 main.c -o calculator -lm
 ========================
       C CALCULATOR
 ========================
-Enter first number: 20
-Enter operator (+, -, *, /, %): %
+Enter first number: 15
+Enter operator (+, -, *, /, %): *
 Enter second number: 5
-Result: 0.00
+Result: 75.00
 
 Perform another calculation? (y/n): n
 Goodbye!
@@ -57,6 +64,6 @@ Goodbye!
 
 ## Planned Improvements
 
-- Refactor arithmetic operations into modular functions
-- Add a `Makefile` for one-command builds
 - Support additional math operations (power, square root)
+- Split into multi-file structure (`calculator.h` and `calculator.c`)
+- Add unit tests for the `calculate()` function
