@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 void clear_input_buffer(void) {
     int ch;
@@ -25,7 +26,7 @@ int main(void) {
             continue;
         }
 
-        printf("Enter operator (+, -, *, /): ");
+        printf("Enter operator (+, -, *, /, %%): ");
         scanf(" %c", &op);
 
         printf("Enter second number: ");
@@ -54,6 +55,14 @@ int main(void) {
                     printf("Error: Division by zero is not allowed.\n");
                 } else {
                     result = num1 / num2;
+                    printf("Result: %.2lf\n", result);
+                }
+                break;
+            case '%':
+                if (num2 == 0) {
+                    printf("Error: Modulus by zero is not allowed.\n");
+                } else {
+                    result = fmod(num1, num2);
                     printf("Result: %.2lf\n", result);
                 }
                 break;
